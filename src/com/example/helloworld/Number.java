@@ -8,47 +8,104 @@ class Number {
 
     public void see(){System.out.println(z+"/"+n);}
 
-    public void shorten() {
-        for (int i1 = 1; i1 <= n; i1++) {
-            for (int i2 = 1; i2 <= n; i2++) {
-                if (i2 != 1 && n % i2 == 0 && z % i2 == 0) {
-                    n /= i2;
-                    z /= i2;
+    public int[] get_raw(){
+        int[] arr = new int[2];
+        arr[0] = z;
+        arr[1] = n;
+        return arr;
+    }
+
+    public static int[] shorten(int n1, int n2) {
+        for (int i1 = 1; i1 <= n1; i1++) {
+            for (int i2 = 1; i2 <= n1; i2++) {
+                if (i2 != 1 && n1 % i2 == 0 && n2 % i2 == 0) {
+                    n1 /= i2;
+                    n2 /= i2;
                     break;
                 }
             }
         }
+        int[] arr = new int[2];
+        arr[0] = n1;
+        arr[1] = n2;
+        return arr;
     }
 
-    public void add(int p) {
-        add(p+".0");
+    public void shorten() {
+        int[] arr = shorten(z, n);
+        z = arr[0];
+        n = arr[1];
     }
 
-    public void add(String p){
-        String[] arr = p.split("[.]", 2);
+    public Number invert(){
+        int a = z;
+        z = n;
+        n = a;
+        return this;
+    }
 
+    private Number pow(int sq) {
+        // hehe broken
+        if (sq < 0) {
+            invert();
+            sq*=-1;
+        }
+
+        int m = 1;
+        for (int i = 1; i<=sq; i++) {
+            m *= z;
+        }
+        z=m;
+        return this;
+    }
+
+    public Number square() {
+        return pow(2);
+    }
+
+    public Number square(int sq) {
+        return pow(sq);
+    }
+
+
+    private int[] StringParser(String s){
+        String[] arr = s.split("[.]", 2);
         int N = u.pow(10, arr[1].length());
         int Z = Integer.parseInt(arr[1]) + Integer.parseInt(arr[0]) * N;
+        int[] r = new int[2];
+        r[0] = Z;
+        r[1] = N;
+        return r;
+    }
 
-
+    public Number add(int Z, int N){
         if (z == 0 && 0 == n) {
             z = Z;
             n = N;
-        } else if (n == N) {
-            z += Z;
         } else {
+            int _z = n*Z+N*z;
             int _n = n*N;
-            int _Z = n*Z+N*z;
 
+            z = _z;
             n = _n;
-            z = _Z;
         }
         shorten();
+        return this;
     }
 
-    public void add(double p) {
-        add(""+p);
+    public Number mul(int Z, int N) {
+        if (z == 0 && 0 == n) {
+            z = Z;
+            n = N;
+        } else {
+            z*=Z;
+            n*=N;
+        }
+        shorten();
+        return this;
     }
+
+
+
 
 }
-//hey
