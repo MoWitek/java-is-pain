@@ -6,6 +6,10 @@ class Number {
     private int n;
     Number () {}
 
+    Number (int number) {
+        add(number, 1);
+    }
+
     public void see(){System.out.println(z+"/"+n);}
 
     public int[] get_raw(){
@@ -45,7 +49,6 @@ class Number {
     }
 
     private Number pow(int sq) {
-        // hehe broken
         if (sq < 0) {
             invert();
             sq*=-1;
@@ -53,10 +56,9 @@ class Number {
 
         int Z = 1;
         int N = 1;
-        for (int i = 1; i<sq; i++) {
-            mul(z, n);
-            Z = z;
-            N = n;
+        for (int i = 1; i<=sq; i++) {
+            Z*=z;
+            N*=n;
         }
 
         z = Z;
