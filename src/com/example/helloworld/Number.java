@@ -51,11 +51,16 @@ class Number {
             sq*=-1;
         }
 
-        int m = 1;
-        for (int i = 1; i<=sq; i++) {
-            m *= z;
+        int Z = 1;
+        int N = 1;
+        for (int i = 1; i<sq; i++) {
+            mul(z, n);
+            Z = z;
+            N = n;
         }
-        z=m;
+
+        z = Z;
+        n = N;
         return this;
     }
 
