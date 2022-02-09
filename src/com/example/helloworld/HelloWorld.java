@@ -11,7 +11,7 @@ public class HelloWorld {
         n.see();
         n.add(2, 3);
         n.see();
-        n.square(-2);
+        n.square(2);
         n.see();
 
     }

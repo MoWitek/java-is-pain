@@ -84,6 +84,7 @@ class Number {
     }
 
     public Number add(int Z, int N){
+        boolean is_neg = Z < 0 || N < 0;
         if (z == 0 && 0 == n) {
             z = Z;
             n = N;
@@ -93,6 +94,11 @@ class Number {
 
             z = _z;
             n = _n;
+        }
+        if (is_neg) {
+            z = u.make_pos(z);
+            n = u.make_pos(n);
+            invert();
         }
         shorten();
         return this;

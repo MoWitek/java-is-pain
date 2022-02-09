@@ -10,7 +10,15 @@ class u{
         return m;
     }
 
-    public static int pow(int n) {
+    public static int square(int n) {
         return pow(n, 2);
     }
+
+    public static int make_pos(int n) {
+        if (0 > n) {
+            n*=-1;
+        }
+        return n;
+    }
+
 }
