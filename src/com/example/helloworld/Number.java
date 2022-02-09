@@ -48,24 +48,6 @@ class Number {
         return this;
     }
 
-    private Number pow(int sq) {
-        if (sq < 0) {
-            invert();
-            sq*=-1;
-        }
-
-        int Z = 1;
-        int N = 1;
-        for (int i = 1; i<=sq; i++) {
-            Z*=z;
-            N*=n;
-        }
-
-        z = Z;
-        n = N;
-        return this;
-    }
-
     public Number square() {
         return pow(2);
     }
@@ -83,6 +65,24 @@ class Number {
         r[0] = Z;
         r[1] = N;
         return r;
+    }
+
+    private Number pow(int sq) {
+        if (sq < 0) {
+            invert();
+            sq*=-1;
+        }
+
+        int Z = 1;
+        int N = 1;
+        for (int i = 1; i<=sq; i++) {
+            Z*=z;
+            N*=n;
+        }
+
+        z = Z;
+        n = N;
+        return this;
     }
 
     public Number add(int Z, int N){
@@ -106,6 +106,10 @@ class Number {
         return this;
     }
 
+    public Number sub(int Z, int N){
+        return add(-Z, N);
+    }
+
     public Number mul(int Z, int N) {
         if (z == 0 && 0 == n) {
             z = Z;
@@ -118,7 +122,8 @@ class Number {
         return this;
     }
 
-
-
+    public Number div(int Z, int N){
+        return mul(N, Z);
+    }
 
 }
