@@ -19,44 +19,6 @@ class Number {
         return arr;
     }
 
-    public static int[] shorten(int n1, int n2) {
-        for (int i1 = 1; i1 <= n1; i1++) {
-            for (int i2 = 1; i2 <= n1; i2++) {
-                if (i2 != 1 && n1 % i2 == 0 && n2 % i2 == 0) {
-                    n1 /= i2;
-                    n2 /= i2;
-                    break;
-                }
-            }
-        }
-        int[] arr = new int[2];
-        arr[0] = n1;
-        arr[1] = n2;
-        return arr;
-    }
-
-    public void shorten() {
-        int[] arr = shorten(z, n);
-        z = arr[0];
-        n = arr[1];
-    }
-
-    public Number invert(){
-        int a = z;
-        z = n;
-        n = a;
-        return this;
-    }
-
-    public Number square() {
-        return pow(2);
-    }
-
-    public Number square(int sq) {
-        return pow(sq);
-    }
-
-
     private int[] StringParser(String s){
         String[] arr = s.split("[.]", 2);
         int N = u.pow(10, arr[1].length());
@@ -65,6 +27,25 @@ class Number {
         r[0] = Z;
         r[1] = N;
         return r;
+    }
+
+    public void shorten() {
+        for (int i1 = 1; i1 <= z; i1++) {
+            for (int i2 = 1; i2 <= z; i2++) {
+                if (i2 != 1 && z % i2 == 0 && n % i2 == 0) {
+                    z /= i2;
+                    n /= i2;
+                    break;
+                }
+            }
+        }
+    }
+
+    public Number invert(){
+        int a = z;
+        z = n;
+        n = a;
+        return this;
     }
 
     private Number pow(int sq) {
@@ -106,8 +87,20 @@ class Number {
         return this;
     }
 
+    public Number add(Number N) {
+        int a = N.get_raw()[0];
+        int b = N.get_raw()[1];
+        return add(a, b);
+    }
+
     public Number sub(int Z, int N){
         return add(-Z, N);
+    }
+
+    public Number sub(Number N) {
+        int a = N.get_raw()[0];
+        int b = N.get_raw()[1];
+        return sub(-a, b);
     }
 
     public Number mul(int Z, int N) {
@@ -122,8 +115,21 @@ class Number {
         return this;
     }
 
+    public Number mul(Number N) {
+        int a = N.get_raw()[0];
+        int b = N.get_raw()[1];
+        return mul(a, b);
+    }
+
     public Number div(int Z, int N){
         return mul(N, Z);
+    }
+
+
+    public Number div(Number N) {
+        int a = N.get_raw()[0];
+        int b = N.get_raw()[1];
+        return mul(b, a);
     }
 
 }

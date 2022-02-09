@@ -1,18 +1,14 @@
 package com.example.helloworld;
 
-
-
-
 public class HelloWorld {
     public static void main(String[] args) {
-        Number n = new Number(3);
-        Number n2 = new Number();
+        Number n = new Number();
+        Number n2 = new Number(2);
 
         n.see();
-        //n.add(3, 3);
+        n.add(n2);
         n.see();
-        n.div(2, 1);
+        n.div(n2);
         n.see();
-
     }
 }
