@@ -10,6 +10,14 @@ class Number {
         add(number, 1);
     }
 
+    @Override
+    public String toString() {
+        return "Number{" +
+                "z=" + z +
+                ", n=" + n +
+                '}';
+    }
+
     public void see(){System.out.println(z+"/"+n);}
 
     public int[] get_raw(){
